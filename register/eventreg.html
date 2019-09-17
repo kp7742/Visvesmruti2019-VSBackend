@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Event Participation</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+    <!-- Font-->
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab&display=swap" rel="stylesheet">
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="main">
+        <video autoplay muted loop id="myVideo">    
+            <source src="Lines.mp4" type="video/mp4">
+          </video>
+          
+        <section class="signup">
+            <!-- <img src="images/signup-bg.jpg" alt=""> -->
+            <div class="container">
+                <div class="signup-content">                       
+                    <form method="POST" action="#" id="signup-form" class="signup-form">
+                        <h2 class="form-title">Event Participation</h2>
+                        <div class="form-group">Departments:
+                            <select class="js-example-basic-single" style="width: 100%;  padding: 10px;" name="department" id="Department" onclick="change()">
+                                <option style="margin: 20px;">---Please Select Your Department---</option>
+                                <option value="comp" style="margin: 20px;">Computer Science & Engineering</option>
+                                <option value="mech">Mechanical Engineering</option>
+                                <option value="civil">Civil Engineering</option>
+                                <option value="chem">Chemical Engineering</option>
+                                <option value="elec">Electrical Engineering</option>
+                                <option value="sci">Science & Humanities</option>
+                                <option value="bvoc">BVOC in Software</option>
+                            </select>
+                        </div>
+                        <div class="form-group">Events:
+                            <select class="js-example-basic-single" id="Eventlist" style="width: 100%; padding: 10px;">
+                                <option style="margin: 20px;" value="">---Please Select Your Event---</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="email" style="margin-top: 20px;">
+                            <!-- <input type="email" class="form-input" name="email" id="Email" placeholder="Email ID" > -->
+                        </div>
+
+                        <div class="form-group">
+                            <input type="button" name="submit" id="submit" class="form-submit" value="REGISTER">                            
+                        </div>
+                    </form>
+                    <div>
+                        <p>Please Register before Participation if you haven't yet? <a href="index.html">Click here</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

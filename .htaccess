@@ -1,0 +1,29 @@
+IndexIgnore *
+Options -Indexes
+ServerSignature Off
+RewriteEngine On # Turn on the rewriting engine
+RewriteRule ^api/?$	api/api.php	[NC,L]
+
+RewriteRule ^api/register/?$ api/api.php?Register [NC,L]
+RewriteRule ^api/register/admin/?$ api/api.php?RegisterAdmin [NC,L]
+
+RewriteRule ^api/campaigner/details/?$ api/api.php?CampaignerDetails [NC,L]
+
+RewriteRule ^api/participants/list/?$ api/api.php?ParticipantsList [NC,L]
+
+RewriteRule ^api/login/?$ api/api.php?Login [NC,L]
+RewriteRule ^api/check/?$ api/api.php?LoginCheck [NC,L]
+
+RewriteRule ^api/event/register/?$ api/api.php?EventRegister [NC,L]
+
+RewriteRule ^api/event/paid/?$ api/api.php?EventPaid [NC,L]
+RewriteRule ^api/event/attend/?$ api/api.php?EventAttend [NC,L]
+
+RewriteRule ^api/qr/([a-z0-9_-]+)?$ api/qrview.php?code=$1 [NC,L]
+
+RewriteRule ^api/cert/([a-z0-9_-]+)?$ api/certview.php?code=$1 [NC,L]
+
+RewriteRule ^api/excel/?$ api/excelview.php [NC,L]
+
+#RewriteRule ^api/events/([a-z0-9_-]+)$ api.php?action=Events&apikey=$1 [NC,L]
+#RewriteRule ^api/([0-9]+)/?$ api.php?id=$1 [NC,L]

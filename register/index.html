@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Event Registration</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+    <!-- Font-->
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab&display=swap" rel="stylesheet">
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="main">
+        <video autoplay muted loop id="myVideo">    
+            <source src="Lines.mp4" type="video/mp4">
+          </video>
+          
+        <section class="signup">
+            <!-- <img src="images/signup-bg.jpg" alt=""> -->
+            <div class="container">
+                <div class="signup-content">                       
+                    <form method="POST" action="#" id="signup-form" class="signup-form">
+                        <h2 class="form-title">Registration</h2>
+                        <div class="form-group">
+                            <input type="email" class="form-input" name="email" id="email" placeholder="Email ID" >
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-input" name="fname" id="fname" placeholder="First Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-input" name="lname" id="lname" placeholder="Last Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-input" name="college" id="college" placeholder="College Name">
+                        </div>
+                        <div class="form-group">Department:
+                            <select class="js-example-basic-single" style="width: 100%;  padding: 10px;" name="department" id="department" >
+                                <option value="Computer" style="margin: 20px;">Computer</option>
+                                <option value="Mechanical">Mechanical </option>
+                                <option value="Civil">Civil </option>
+                                <option value="Chemical">Chemical</option>
+                                <option value="Electrical">Electrical</option>                                
+                                <option value="Information">Information Technology</option>
+                                <option value="Electronics">Electronics and Telecomunication</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                        <div id="others">
+                            
+                        </div>
+                        <div class="form-group">Gender:
+                            <select class="js-example-basic-single" style="width: 100%; padding: 10px;" name="gender" 
+                            id="gender">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <!-- <div id="eventss">
+                            <select class="js-example-basic-single" style="width: 100%; padding: 10px;" id="events">
+                            <option value="comp-paper">Paper &nbsp;Presentation</option>
+                            <option value="comp-poster">Poster Presentation</option>
+                            <option value="comp-prog">Programming Date</option>
+                            <option value="comp-web">Web Design</option>
+                            <option value="comp-virtual">Virtual Placement</option>
+                            <option value="comp-quiz">Quiz with Snake & Ladder</option>
+                            </select>
+                        </div> -->
+                        <div class="form-group">Semester:
+                            <select class="js-example-basic-single" style="width: 100%; padding: 10px;" name="semester" id="semester">
+                                <option style="padding: 30px;" value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </select>
+                        </div>
+                         <div class="form-group">
+                            <input type="number" class="form-input" name="mobile" id="mobile" placeholder="Mobile No.">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="button" name="submit" id="submit" class="form-submit" value="REGISTER">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
+    <script src="js/register.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
