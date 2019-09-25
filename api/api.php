@@ -224,28 +224,34 @@ if ($GLOBALS['AdminApiAccess'] == true && isset($_GET['Register']) && isset($_PO
     $mobile = str_replace("+91","", $_POST['mobile']);
     $gender = $_POST['gender'];
 
-    $user = getParticipant($email);
-    if ($email == "" || !empty($user)) {
-        Logs("Participant Registration: " . $email . " Already Registered");
-        $result['Message'] = "Already Registered";
+    if(strpos($email, '@gmail.com') !== false || strpos($email, '@yahoo.com') !== false
+        || strpos($email, '@yahoo.in') !== false){
+        $user = getParticipant($email);
+        if ($email == "" || !empty($user)) {
+            Logs("Participant Registration: " . $email . " Already Registered");
+            $result['Message'] = "Already Registered";
+        } else {
+            addParticipant($email, $fname, $lname, $college, $dept, $sem, $mobile, $gender);
+
+            Logs("Participant Registration: " . $email . " Registration Done");
+
+            sendSMS($mobile, "Hurray! Registration Done..\n\n".
+                "We heartily welcome you to the technology festival at R.N.G. Patel Institute of Technology.\n\n".
+                "You can start participating in your desired events\n\n".
+                "by visiting our website https://visvesmruti.tech");
+
+            sendMail($email, "Hurray! Registration Done..",
+                "We heartily welcome you to the technology festival at R.N.G. Patel Institute of Technology.\n\n".
+                "You can start participating in your desired events\n".
+                "by visiting our website https://visvesmruti.tech");
+
+            $result['Status'] = "Success";
+            $result['Code'] = 200;
+            $result['Message'] = "Registration Done";
+        }
     } else {
-        addParticipant($email, $fname, $lname, $college, $dept, $sem, $mobile, $gender);
-
-        Logs("Participant Registration: " . $email . " Registration Done");
-
-        sendSMS($mobile, "Hurray! Registration Done..\n\n".
-            "We heartily welcome you to the technology festival at R.N.G. Patel Institute of Technology.\n\n".
-            "You can start participating in your desired events\n\n".
-            "by visiting our website https://visvesmruti.tech");
-
-        sendMail($email, "Hurray! Registration Done..",
-            "We heartily welcome you to the technology festival at R.N.G. Patel Institute of Technology.\n\n".
-            "You can start participating in your desired events\n".
-            "by visiting our website https://visvesmruti.tech");
-
-        $result['Status'] = "Success";
-        $result['Code'] = 200;
-        $result['Message'] = "Registration Done";
+        Logs("Participant Registration: " . $email . " is Not Valid Email");
+        $result['Message'] = $email . " is Not Valid Email";
     }
 }
 
@@ -627,6 +633,37 @@ if (isset($_GET['ParticipantsList']) && isset($_POST['apikey'])) {
     } else {
         Logs("Participants List: Unauthorised Access");
         $result['Message'] = "Unauthorised Access!";
+    }
+}
+
+//Certificate Data
+if (isset($_GET['Certificate']) && isset($_POST['email']) && isset($_POST['mobile'])) {
+    $parti = getParticipant($_POST['email']);
+    if (!empty($parti)) {
+        if($parti[0]["Mobile"] == $_POST['mobile']){
+            $eventregs = getEventEntryByPID($parti[0]["PID"]);
+            if(!empty($eventregs)){
+                $evdata = array();
+                foreach ($eventregs as $reg){
+                    $event = getEventByID($reg["EVID"])[0];
+                    array_push($evdata, [
+                        "EventName" => $event["EVName"],
+                        "EventDept" => $event["EVDepartment"],
+                        "URL" => "https://visvesmruti.tech/api/cert/" . $reg["FCode"]
+                    ]);
+                }
+                $result['Status'] = "Success";
+                $result['Code'] = 200;
+                $result['Data'] = $evdata;
+                $result['Message'] = "You have " . count($eventregs) . " Certificates";
+            } else {
+                $result['Message'] = "You didn't Participated in Any Event, so No Certificate!";
+            }
+        } else {
+            $result['Message'] = "Your Mobile Number is Not Registered Before!";
+        }
+    } else {
+        $result['Message'] = "Your Email is Not Registered Before!";
     }
 }
 
